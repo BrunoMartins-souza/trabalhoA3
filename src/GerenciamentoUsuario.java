@@ -18,7 +18,7 @@ public class GerenciamentoUsuario {
     }
 
     //metodo para autenticar usuario com email e senha 
-    public Usuario autentiarUsuario(String email, String senha){
+    public Usuario autenticarUsuario(String email, String senha){
         Usuario usuario = usuarios.get(email);
         if (usuario != null && usuario.getSenha().equals(senha)){
             return usuario;

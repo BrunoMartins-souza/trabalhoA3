@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +37,9 @@ public class Estoque {
     //metodo para exibir informações do livros pelo isbn
     public void exibirLivro(String isbn){
         if(livros.containsKey(isbn)){
-            System.out.println(livros.get(isbn).toString());
+            System.out.println(livros.get(isbn).getTitulo());
+            System.out.println(livros.get(isbn).getAutor());
+            System.out.println(livros.get(isbn).getIsbn());
         }else{
             System.out.println("Livro não encontrado no estoque.");
         }

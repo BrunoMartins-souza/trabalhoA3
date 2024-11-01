@@ -9,8 +9,10 @@ public class Usuario {
     private String email;
     private String senha;
     private TipoUsuario tipo;
+    private GerenciamentoUsuario gerenciamentoUsuario;
 
-    public Usuario(){
+    public Usuario(GerenciamentoUsuario gerenciamentoUsuario){
+        this.gerenciamentoUsuario = gerenciamentoUsuario;
     }
 
     public Usuario(String nome, String email, String senha, TipoUsuario tipo){
@@ -26,11 +28,14 @@ public class Usuario {
         int opcao;
 
         do{
+            System.out.println("\n");
             System.out.println("1 - Fazer login");
             System.out.println("2 - Cadastrar novo usuário");
-            System.out.println("3 - Sair");
+            System.out.println("3 - Retornar ao menu anterior");
             System.out.print("Escolha uma opção: ");
             opcao = input.nextInt();
+
+            System.out.println("\n");
 
             input.nextLine();
 
@@ -42,23 +47,25 @@ public class Usuario {
                     cadastrarUsuario();
                     break;
                 case 3:
-                    System.out.println("Retornando ao menu anterior...");
+                    System.out.println("Retornando ao menu anterior... ");
+                    break;
                 default:
-                System.out.println("Opção inválida!");
+                    System.out.println("Opção inválida!");
+                    break;
             }
         }while(opcao != 3);
     }
 
-    private static void login(){
+    private void login(){
         Scanner input = new Scanner(System.in);
-        GerenciamentoUsuario gerenciamentoUsuario = new GerenciamentoUsuario();
 
+        System.out.println("\n");
         System.out.print("Email: ");
         String email = input.nextLine();
         System.out.print("Senha: ");
         String senha = input.nextLine();
 
-        Usuario usuario = gerenciamentoUsuario.autentiarUsuario(email, senha);
+        Usuario usuario = gerenciamentoUsuario.autenticarUsuario(email, senha);
 
         if(usuario != null){
             if(usuario.getTipo() == Usuario.TipoUsuario.ADMIN){
@@ -69,10 +76,10 @@ public class Usuario {
         }
     }
 
-    private static void cadastrarUsuario(){
+    private void cadastrarUsuario(){
         Scanner input = new Scanner(System.in);
-        GerenciamentoUsuario gerenciamentoUsuario = new GerenciamentoUsuario();
         
+        System.out.println("\n");
         System.out.print("Nome: ");
         String nome = input.nextLine();
 
@@ -85,26 +92,24 @@ public class Usuario {
         System.out.print("Tipo de usuário (1 para ADMIN, 2 para CLIENTE): ");
         int tipoOpcao = input.nextInt();
 
-        Usuario.TipoUsuario tipo;
-        if (tipoOpcao == 1) {
-            tipo = Usuario.TipoUsuario.ADMIN;
-        } else {
-            tipo = Usuario.TipoUsuario.CLIENTE;
-        }
+        TipoUsuario tipo = (tipoOpcao == 1) ? TipoUsuario.ADMIN : TipoUsuario.CLIENTE;
 
         Usuario novoUsuario = new Usuario(nome, email, senha, tipo);
         gerenciamentoUsuario.adicionarUsuario(novoUsuario);
+
+        System.out.println("\n");
     }
 
-    private static void menuAdmin(){
+    private void menuAdmin(){
         Scanner input = new Scanner(System.in);
 
         int opcao;
         do{
+            System.out.println("\n");
             System.out.println("\n=== Menu Administrador ===");
             System.out.println("1 - Gerenciar livros");
             System.out.println("2 - Exibir todos os usuários");
-            System.out.println("3 - Sair");
+            System.out.println("3 - Retornar ao menu anterior");
             System.out.print("Escolha uma opção: ");
             opcao = input.nextInt();
 
@@ -112,10 +117,10 @@ public class Usuario {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("gerenciamento de livro");
+                    
                     break;
                 case 2: 
-                    System.out.println("exibir todos os usuarios");
+                    gerenciamentoUsuario.exibirTodosUsuarios();
                     break;
                 case 3:
                     System.out.println("Retornano ao menu anterior...");
@@ -125,14 +130,17 @@ public class Usuario {
                     break;
             }
         }while(opcao != 3);
+
+        System.out.println("\n");
     }
 
-    private static void menuCliente(){
+    private void menuCliente(){
         Scanner input = new Scanner(System.in);
         
         int opcao;
 
         do{
+            System.out.println("\n");
             System.out.println("\n=== Menu Cliente ===");
             System.out.println("1 - Adicionar livro ao carrinho");
             System.out.println("2 - Adicionar livro à lista de desejos");
@@ -159,6 +167,7 @@ public class Usuario {
         }while(opcao != 3);
     }
 
+    //Getters e Setters
     public String getEmail(){
         return email;
     }

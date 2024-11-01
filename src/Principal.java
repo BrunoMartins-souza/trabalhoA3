@@ -3,8 +3,10 @@ import java.util.Scanner;
 public class Principal {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Livro livro = new Livro();
-        Usuario usuarios = new Usuario();
+        Estoque estoque = new Estoque();
+        Livro livro = new Livro(estoque);
+        GerenciamentoUsuario gerenciamentoUsuario = new GerenciamentoUsuario();
+        Usuario usuarios = new Usuario(gerenciamentoUsuario);
 
         int opcao;
 

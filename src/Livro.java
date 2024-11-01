@@ -5,8 +5,10 @@ public class Livro {
     private String autor;
     private String isbn;
     private int quantidadeEstoque;
+    private Estoque estoque;
 
-    public Livro(){
+    public Livro(Estoque estoque){
+        this.estoque = estoque;
     }   
 
     public Livro(String titulo, String autor, String isbn, int quantidadeEstoque) {
@@ -19,7 +21,6 @@ public class Livro {
     //menu Livro
     public void menuLivro(){
         Scanner input = new Scanner(System.in);
-        Estoque estoque = new Estoque();
 
         int opcaoLivro = 0;
 
@@ -40,6 +41,9 @@ public class Livro {
                 case 2:
 
                     break;
+                case 3:
+                    exibirLivros();
+                    break;
             
                 default:
                     break;
@@ -50,7 +54,6 @@ public class Livro {
 
     public void cadastrarNovoLivro(){
         Scanner input = new Scanner(System.in);
-        Estoque estoque = new Estoque();
 
         System.out.print("Digite o título do livro: ");
         String titulo = input.nextLine();
@@ -67,6 +70,15 @@ public class Livro {
         Livro novoLivro = new Livro(titulo, autor, isbn, quantidadeEstoque);
         estoque.adicionarLivro(novoLivro);
         System.out.println("Livro adicionado ao estoque com sucesso!");
+    }
+
+    public void exibirLivros(){
+        Scanner input = new Scanner (System.in);
+
+        System.out.print("\nInforme o ISBN do livro que deseja exibir: ");
+        String isbn = input.nextLine();
+
+        estoque.exibirLivro(isbn);
     }
 
     //Getters e Setters
