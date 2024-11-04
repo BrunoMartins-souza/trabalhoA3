@@ -37,23 +37,31 @@ public class Estoque {
     //metodo para exibir informações do livros pelo isbn
     public void exibirLivro(String isbn){
         if(livros.containsKey(isbn)){
-            System.out.println(livros.get(isbn).getTitulo());
-            System.out.println(livros.get(isbn).getAutor());
-            System.out.println(livros.get(isbn).getIsbn());
+            System.out.println();
+            System.out.println("Titulo: " + livros.get(isbn).getTitulo());
+            System.out.println("Autor: " + livros.get(isbn).getAutor());
+            System.out.println("ISBN: " + livros.get(isbn).getIsbn());
+            System.out.println("Quantidade em Estoque: " + livros.get(isbn).getQuantidadeEstoque());
         }else{
-            System.out.println("Livro não encontrado no estoque.");
+            System.out.println("\nLivro não encontrado no estoque.\n");
         }
     }
 
     //metodo para exibir todos os livros no estoque
     public void exibirTodosLivros(){
         if (livros.isEmpty()) {
-            System.out.println("O estoque está vazio.");
-        }else{
-            for(Livro livro : livros.values()){
-                System.out.println(livro);
+            System.out.println("\nO estoque está vazio.\n");
+        }else{    
+            String separacao = "-";
+            String tracos = separacao.repeat(100);
+
+            System.out.printf("%-16s | %-16s | %-10s | %-16s", "Titulo", "Autor", "ISBN", "Estoque");
+            System.out.println("\n" + tracos);
+
+            for(Livro livros : livros.values()){
+                System.out.printf("\n%-16s | %-16s | %-10s | %-16s",livros.getTitulo(), livros.getAutor(), livros.getIsbn(), livros.getQuantidadeEstoque()); //comando para preencher a tabela com os dados.
             }
+            System.out.println();
         }
     }
-    
 }

@@ -28,14 +28,12 @@ public class Usuario {
         int opcao;
 
         do{
-            System.out.println("\n");
+            System.out.println();
             System.out.println("1 - Fazer login");
             System.out.println("2 - Cadastrar novo usuário");
             System.out.println("3 - Retornar ao menu anterior");
             System.out.print("Escolha uma opção: ");
             opcao = input.nextInt();
-
-            System.out.println("\n");
 
             input.nextLine();
 
@@ -59,7 +57,7 @@ public class Usuario {
     private void login(){
         Scanner input = new Scanner(System.in);
 
-        System.out.println("\n");
+        System.out.println();
         System.out.print("Email: ");
         String email = input.nextLine();
         System.out.print("Senha: ");
@@ -79,7 +77,7 @@ public class Usuario {
     private void cadastrarUsuario(){
         Scanner input = new Scanner(System.in);
         
-        System.out.println("\n");
+        System.out.println();
         System.out.print("Nome: ");
         String nome = input.nextLine();
 
@@ -97,16 +95,16 @@ public class Usuario {
         Usuario novoUsuario = new Usuario(nome, email, senha, tipo);
         gerenciamentoUsuario.adicionarUsuario(novoUsuario);
 
-        System.out.println("\n");
     }
 
     private void menuAdmin(){
         Scanner input = new Scanner(System.in);
+        //Livro livro = new Livro();
 
         int opcao;
         do{
-            System.out.println("\n");
-            System.out.println("\n=== Menu Administrador ===");
+            System.out.println();
+            System.out.println("=== Menu Administrador ===");
             System.out.println("1 - Gerenciar livros");
             System.out.println("2 - Exibir todos os usuários");
             System.out.println("3 - Retornar ao menu anterior");
@@ -117,7 +115,7 @@ public class Usuario {
 
             switch (opcao) {
                 case 1:
-                    
+                    //livro.menuLivro();
                     break;
                 case 2: 
                     gerenciamentoUsuario.exibirTodosUsuarios();
@@ -131,7 +129,6 @@ public class Usuario {
             }
         }while(opcao != 3);
 
-        System.out.println("\n");
     }
 
     private void menuCliente(){
@@ -140,8 +137,8 @@ public class Usuario {
         int opcao;
 
         do{
-            System.out.println("\n");
-            System.out.println("\n=== Menu Cliente ===");
+            System.out.println();
+            System.out.println("=== Menu Cliente ===");
             System.out.println("1 - Adicionar livro ao carrinho");
             System.out.println("2 - Adicionar livro à lista de desejos");
             System.out.println("3 - Retornar ao menu anterior");
